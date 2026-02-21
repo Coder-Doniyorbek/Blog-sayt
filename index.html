@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Doniyorbek — Python Backend Developer. Zamonaviy texnologiyalar, backend development, Telegram botlar va LMS platformalar haqida blog.">
+  <meta name="keywords" content="Python, Backend, Django, FastAPI, Telegram Bot, LMS, Web Development, O'zbekiston">
+  <meta name="author" content="Doniyorbek">
+  <title>doniyorbek-coder — Python Backend Developer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+
+  <style>
+/* ============================================
+   DONIYORBEK BLOG — Premium Minimalist Theme
+   ============================================ */
+:root{--bg-primary:#0a0a0f;--bg-secondary:#12121a;--bg-card:#16161f;--bg-card-hover:#1c1c28;--accent:#6c5ce7;--accent-light:#a29bfe;--accent-glow:rgba(108,92,231,0.3);--text-primary:#e8e8ef;--text-secondary:#8888a0;--text-muted:#55556a;--border:#22222f;--border-light:#2a2a3a;--success:#00cec9;--warning:#fdcb6e;--danger:#ff6b6b;--gradient-1:linear-gradient(135deg,#6c5ce7,#a29bfe);--gradient-2:linear-gradient(135deg,#0a0a0f,#16161f);--gradient-3:linear-gradient(135deg,#6c5ce7,#00cec9);--shadow-sm:0 2px 8px rgba(0,0,0,0.3);--shadow-md:0 4px 20px rgba(0,0,0,0.4);--shadow-lg:0 8px 40px rgba(0,0,0,0.5);--shadow-glow:0 0 30px rgba(108,92,231,0.15);--radius-sm:8px;--radius-md:12px;--radius-lg:20px;--radius-xl:28px;--font-main:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-code:'JetBrains Mono','Fira Code',monospace;--transition:0.3s cubic-bezier(0.4,0,0.2,1);--transition-slow:0.5s cubic-bezier(0.4,0,0.2,1)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg-secondary)}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg-secondary)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:10px}
+body{font-family:var(--font-main);background:var(--bg-primary);color:var(--text-primary);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit;transition:var(--transition)}
+img{max-width:100%;display:block}
+ul{list-style:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+::selection{background:var(--accent);color:#fff}
+#particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.loader{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--bg-primary);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity 0.6s,visibility 0.6s}
+.loader.hidden{opacity:0;visibility:hidden}
+.loader-inner{display:flex;flex-direction:column;align-items:center;gap:20px}
+.loader-spinner{width:48px;height:48px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite}
+.loader-text{font-size:14px;color:var(--text-secondary);letter-spacing:3px;text-transform:uppercase}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cursor-glow{position:fixed;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(108,92,231,0.06) 0%,transparent 70%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);transition:opacity 0.3s}
+.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:16px 0;transition:var(--transition);backdrop-filter:blur(0px)}
+.navbar.scrolled{padding:10px 0;background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.navbar .container{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:700;letter-spacing:-0.5px}
+.nav-logo .logo-icon{width:36px;height:36px;background:var(--gradient-1);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff}
+.nav-logo .logo-text span{background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-secondary);position:relative;padding:4px 0}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--gradient-1);border-radius:2px;transition:var(--transition)}
+.nav-links a:hover,.nav-links a.active{color:var(--text-primary)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav-search-btn,.nav-theme-btn{width:40px;height:40px;border:1px solid var(--border);border-radius:var(--radius-sm);background:transparent;color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);font-size:16px}
+.nav-search-btn:hover,.nav-theme-btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow-glow)}
+.nav-cta{padding:10px 24px;background:var(--gradient-1);border:none;border-radius:var(--radius-sm);color:#fff;font-size:14px;font-weight:600;cursor:pointer;transition:var(--transition)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 4px 20px var(--accent-glow)}
+.nav-mobile-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav-mobile-toggle span{width:24px;height:2px;background:var(--text-primary);border-radius:2px;transition:var(--transition)}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 0 80px;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-30%;width:800px;height:800px;background:radial-gradient(circle,rgba(108,92,231,0.08) 0%,transparent 60%);border-radius:50%;pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,206,201,0.05) 0%,transparent 60%);border-radius:50%;pointer-events:none}
+.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+.hero-content{max-width:600px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(108,92,231,0.1);border:1px solid rgba(108,92,231,0.2);border-radius:50px;font-size:13px;color:var(--accent-light);margin-bottom:24px;animation:fadeInUp 0.6s ease}
+.hero-badge .pulse-dot{width:8px;height:8px;background:var(--success);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.5)}}
+.hero-title{font-size:clamp(40px,5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-2px;margin-bottom:20px;animation:fadeInUp 0.6s ease 0.1s both}
+.hero-title .gradient-text{background:var(--gradient-3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-subtitle{font-size:18px;color:var(--text-secondary);line-height:1.8;margin-bottom:36px;animation:fadeInUp 0.6s ease 0.2s both}
+.hero-stats{display:flex;gap:40px;margin-bottom:40px;animation:fadeInUp 0.6s ease 0.3s both}
+.hero-stat{text-align:left}
+.hero-stat .stat-number{font-size:32px;font-weight:800;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-stat .stat-label{font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
+.hero-buttons{display:flex;gap:16px;animation:fadeInUp 0.6s ease 0.4s both}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:var(--radius-sm);font-size:15px;font-weight:600;font-family:var(--font-main);cursor:pointer;transition:var(--transition);border:none}
+.btn-primary{background:var(--gradient-1);color:#fff;box-shadow:0 4px 15px var(--accent-glow)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px var(--accent-glow)}
+.btn-outline{background:transparent;color:var(--text-primary);border:1px solid var(--border-light)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow-glow)}
+.hero-visual{position:relative;display:flex;justify-content:center;animation:fadeIn 1s ease 0.5s both}
+.hero-code-window{width:100%;max-width:480px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg)}
+.code-window-header{display:flex;align-items:center;gap:8px;padding:16px 20px;border-bottom:1px solid var(--border);background:var(--bg-secondary)}
+.code-dot{width:12px;height:12px;border-radius:50%}
+.code-dot.red{background:#ff5f57}.code-dot.yellow{background:#febc2e}.code-dot.green{background:#28c840}
+.code-window-title{flex:1;text-align:center;font-size:12px;color:var(--text-muted);font-family:var(--font-code)}
+.code-window-body{padding:24px;font-family:var(--font-code);font-size:14px;line-height:2;min-height:300px}
+.code-line{display:flex;gap:12px}
+.code-line .line-number{color:var(--text-muted);user-select:none;min-width:20px;text-align:right}
+.code-keyword{color:#c792ea}.code-function{color:#82aaff}.code-string{color:#c3e88d}.code-comment{color:#546e7a}.code-variable{color:#f78c6c}.code-bracket{color:#89ddff}.code-operator{color:#89ddff}
+.hero-float-card{position:absolute;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px 20px;box-shadow:var(--shadow-md);animation:float 6s ease-in-out infinite}
+.hero-float-card.card-1{top:10%;right:-30px;animation-delay:0s}
+.hero-float-card.card-2{bottom:15%;left:-20px;animation-delay:2s}
+.float-card-icon{font-size:24px;margin-bottom:8px}
+.float-card-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.float-card-value{font-size:12px;color:var(--text-muted)}
+@keyframes float{0%,100%{transform:translateY(0px)}50%{transform:translateY(-15px)}}
+.section{padding:100px 0;position:relative;z-index:2}
+.section-header{text-align:center;max-width:600px;margin:0 auto 60px}
+.section-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(108,92,231,0.08);border:1px solid rgba(108,92,231,0.15);border-radius:50px;font-size:12px;font-weight:600;color:var(--accent-light);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
+.section-title{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-1px;margin-bottom:16px}
+.section-desc{font-size:16px;color:var(--text-secondary);line-height:1.8}
+.blog-filters{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:48px;flex-wrap:wrap}
+.filter-btn{padding:8px 20px;border:1px solid var(--border);border-radius:50px;background:transparent;color:var(--text-secondary);font-size:13px;font-weight:500;font-family:var(--font-main);cursor:pointer;transition:var(--transition)}
+.filter-btn:hover,.filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.blog-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition);cursor:pointer;opacity:0;transform:translateY(30px)}
+.blog-card.visible{opacity:1;transform:translateY(0)}
+.blog-card:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:var(--shadow-glow)}
+.blog-card-image{position:relative;height:200px;overflow:hidden}
+.blog-card-image img{width:100%;height:100%;object-fit:cover;transition:var(--transition-slow)}
+.blog-card:hover .blog-card-image img{transform:scale(1.08)}
+.blog-card-category{position:absolute;top:16px;left:16px;padding:4px 12px;background:rgba(108,92,231,0.85);backdrop-filter:blur(10px);border-radius:50px;font-size:11px;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:0.5px}
+.blog-card-body{padding:24px}
+.blog-card-meta{display:flex;align-items:center;gap:16px;margin-bottom:12px;font-size:12px;color:var(--text-muted)}
+.blog-card-meta span{display:flex;align-items:center;gap:4px}
+.blog-card-title{font-size:18px;font-weight:700;margin-bottom:10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:var(--transition)}
+.blog-card:hover .blog-card-title{color:var(--accent-light)}
+.blog-card-excerpt{font-size:14px;color:var(--text-secondary);line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:20px}
+.blog-card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border)}
+.blog-card-author{display:flex;align-items:center;gap:10px}
+.blog-card-author img{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.blog-card-author-name{font-size:13px;font-weight:600}
+.blog-card-read-more{font-size:13px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:4px;transition:var(--transition)}
+.blog-card:hover .blog-card-read-more{gap:8px}
+.featured-post{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:48px;transition:var(--transition);cursor:pointer}
+.featured-post:hover{border-color:var(--accent);box-shadow:var(--shadow-glow)}
+.featured-post-image{position:relative;min-height:400px;overflow:hidden}
+.featured-post-image img{width:100%;height:100%;object-fit:cover;transition:var(--transition-slow)}
+.featured-post:hover .featured-post-image img{transform:scale(1.05)}
+.featured-label{position:absolute;top:20px;left:20px;padding:6px 16px;background:var(--gradient-1);border-radius:50px;font-size:12px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:1px}
+.featured-post-content{padding:48px;display:flex;flex-direction:column;justify-content:center}
+.featured-post-category{font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.featured-post-title{font-size:28px;font-weight:800;line-height:1.3;margin-bottom:16px;letter-spacing:-0.5px}
+.featured-post-excerpt{font-size:15px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px}
+.featured-post-meta{display:flex;align-items:center;gap:20px;font-size:13px;color:var(--text-muted)}
+.featured-post-meta span{display:flex;align-items:center;gap:6px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-image-wrapper{position:relative}
+.about-image{width:100%;max-width:400px;aspect-ratio:1;background:var(--gradient-1);border-radius:var(--radius-xl);overflow:hidden;position:relative}
+.about-image-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:120px;background:var(--bg-card);margin:3px;border-radius:calc(var(--radius-xl) - 3px)}
+.about-decoration{position:absolute;width:120px;height:120px;border:2px solid var(--accent);border-radius:var(--radius-lg);opacity:0.3}
+.about-decoration-1{top:-20px;right:-20px;animation:float 8s ease-in-out infinite}
+.about-decoration-2{bottom:-15px;left:-15px;animation:float 8s ease-in-out infinite 3s}
+.about-content .about-title{font-size:36px;font-weight:800;margin-bottom:20px;letter-spacing:-1px}
+.about-content .about-text{font-size:16px;color:var(--text-secondary);line-height:1.8;margin-bottom:32px}
+.about-skills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.skill-tag{padding:8px 18px;background:rgba(108,92,231,0.08);border:1px solid rgba(108,92,231,0.15);border-radius:50px;font-size:13px;font-weight:500;color:var(--accent-light);transition:var(--transition)}
+.skill-tag:hover{background:rgba(108,92,231,0.15);border-color:var(--accent);transform:translateY(-2px)}
+.about-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.about-stat-card{padding:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);text-align:center;transition:var(--transition)}
+.about-stat-card:hover{border-color:var(--accent);box-shadow:var(--shadow-glow)}
+.about-stat-card .stat-icon{font-size:28px;margin-bottom:8px}
+.about-stat-card .stat-num{font-size:24px;font-weight:800;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.about-stat-card .stat-text{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.project-card{padding:36px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);transition:var(--transition);position:relative;overflow:hidden}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient-1);opacity:0;transition:var(--transition)}
+.project-card:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:var(--shadow-glow)}
+.project-card:hover::before{opacity:1}
+.project-icon{width:56px;height:56px;background:rgba(108,92,231,0.1);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px}
+.project-card h3{font-size:20px;font-weight:700;margin-bottom:12px}
+.project-card p{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:20px}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px}
+.project-tags span{padding:4px 10px;background:var(--bg-secondary);border-radius:4px;font-size:11px;color:var(--text-muted);font-family:var(--font-code)}
+.newsletter-section{padding:80px 0}
+.newsletter-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xl);padding:60px;text-align:center;position:relative;overflow:hidden}
+.newsletter-card::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 0%,rgba(108,92,231,0.08) 0%,transparent 60%);pointer-events:none}
+.newsletter-icon{font-size:48px;margin-bottom:20px}
+.newsletter-card h2{font-size:32px;font-weight:800;margin-bottom:12px;letter-spacing:-0.5px}
+.newsletter-card p{font-size:16px;color:var(--text-secondary);margin-bottom:32px;max-width:450px;margin-left:auto;margin-right:auto}
+.newsletter-form{display:flex;gap:12px;max-width:480px;margin:0 auto}
+.newsletter-form input{flex:1;padding:14px 20px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-primary);font-size:15px;font-family:var(--font-main);outline:none;transition:var(--transition)}
+.newsletter-form input::placeholder{color:var(--text-muted)}
+.newsletter-form input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.newsletter-form button{padding:14px 28px;background:var(--gradient-1);border:none;border-radius:var(--radius-sm);color:#fff;font-size:15px;font-weight:600;font-family:var(--font-main);cursor:pointer;transition:var(--transition);white-space:nowrap}
+.newsletter-form button:hover{transform:translateY(-2px);box-shadow:0 4px 20px var(--accent-glow)}
+.footer{padding:60px 0 30px;border-top:1px solid var(--border);position:relative;z-index:2}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand .footer-logo{font-size:22px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.footer-brand .footer-logo span{background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.footer-brand p{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:20px}
+.footer-social{display:flex;gap:10px}
+.footer-social a{width:40px;height:40px;border:1px solid var(--border);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--text-secondary);transition:var(--transition)}
+.footer-social a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px);box-shadow:var(--shadow-glow)}
+.footer-column h4{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;color:var(--text-primary)}
+.footer-column a{display:block;font-size:14px;color:var(--text-secondary);padding:6px 0;transition:var(--transition)}
+.footer-column a:hover{color:var(--accent-light);padding-left:6px}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:30px;border-top:1px solid var(--border);font-size:13px;color:var(--text-muted)}
+.search-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);z-index:9999;display:flex;align-items:flex-start;justify-content:center;padding-top:15vh;opacity:0;visibility:hidden;transition:var(--transition)}
+.search-modal.active{opacity:1;visibility:visible}
+.search-modal-content{width:100%;max-width:600px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transform:translateY(-20px) scale(0.95);transition:var(--transition)}
+.search-modal.active .search-modal-content{transform:translateY(0) scale(1)}
+.search-input-wrapper{display:flex;align-items:center;gap:12px;padding:20px 24px;border-bottom:1px solid var(--border)}
+.search-input-wrapper .search-icon{font-size:20px;color:var(--text-muted)}
+.search-input-wrapper input{flex:1;background:transparent;border:none;color:var(--text-primary);font-size:16px;font-family:var(--font-main);outline:none}
+.search-input-wrapper input::placeholder{color:var(--text-muted)}
+.search-input-wrapper .search-shortcut{padding:4px 10px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;font-size:11px;color:var(--text-muted);font-family:var(--font-code)}
+.search-results{max-height:400px;overflow-y:auto;padding:12px}
+.search-result-item{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:var(--radius-sm);cursor:pointer;transition:var(--transition)}
+.search-result-item:hover{background:var(--bg-secondary)}
+.search-result-icon{font-size:20px}
+.search-result-info h4{font-size:14px;font-weight:600;margin-bottom:2px}
+.search-result-info p{font-size:12px;color:var(--text-muted)}
+.search-empty{padding:40px;text-align:center;color:var(--text-muted);font-size:14px}
+.post-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);z-index:9998;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:var(--transition)}
+.post-modal.active{opacity:1;visibility:visible}
+.post-modal-content{width:100%;max-width:800px;max-height:85vh;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow-y:auto;transform:translateY(20px) scale(0.95);transition:var(--transition)}
+.post-modal.active .post-modal-content{transform:translateY(0) scale(1)}
+.post-modal-header{position:relative;height:250px;overflow:hidden}
+.post-modal-header img{width:100%;height:100%;object-fit:cover}
+.post-modal-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,var(--bg-card),transparent)}
+.post-modal-close{position:absolute;top:16px;right:16px;width:40px;height:40px;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);border:none;border-radius:50%;color:#fff;font-size:18px;cursor:pointer;z-index:2;transition:var(--transition)}
+.post-modal-close:hover{background:var(--accent)}
+.post-modal-body{padding:32px 48px 48px}
+.post-modal-body .post-category{font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.post-modal-body h1{font-size:32px;font-weight:800;line-height:1.3;margin-bottom:16px;letter-spacing:-0.5px}
+.post-modal-meta{display:flex;align-items:center;gap:20px;font-size:13px;color:var(--text-muted);margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.post-modal-meta span{display:flex;align-items:center;gap:6px}
+.post-modal-text{font-size:16px;color:var(--text-secondary);line-height:1.9}
+.post-modal-text p{margin-bottom:20px}
+.post-modal-text h2{font-size:22px;font-weight:700;color:var(--text-primary);margin-top:32px;margin-bottom:16px}
+.post-modal-text code{padding:2px 8px;background:var(--bg-secondary);border-radius:4px;font-family:var(--font-code);font-size:14px;color:var(--accent-light)}
+.post-modal-text pre{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px;overflow-x:auto;margin:24px 0}
+.post-modal-text pre code{background:none;padding:0}
+.back-to-top{position:fixed;bottom:32px;right:32px;width:48px;height:48px;background:var(--gradient-1);border:none;border-radius:50%;color:#fff;font-size:18px;cursor:pointer;z-index:100;opacity:0;visibility:hidden;transform:translateY(20px);transition:var(--transition);box-shadow:0 4px 15px var(--accent-glow)}
+.back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.back-to-top:hover{transform:translateY(-3px);box-shadow:0 8px 30px var(--accent-glow)}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+.animate-on-scroll{opacity:0;transform:translateY(40px);transition:opacity 0.6s ease,transform 0.6s ease}
+.animate-on-scroll.animated{opacity:1;transform:translateY(0)}
+@media(max-width:1024px){.hero .container{grid-template-columns:1fr;text-align:center}.hero-visual{display:none}.hero-content{max-width:100%}.hero-stats{justify-content:center}.hero-buttons{justify-content:center}.blog-grid{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr;gap:40px}.about-image-wrapper{display:flex;justify-content:center}.projects-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr;gap:32px}.featured-post{grid-template-columns:1fr}.featured-post-image{min-height:250px}}
+@media(max-width:768px){.nav-links{display:none}.nav-cta{display:none}.nav-mobile-toggle{display:flex}.blog-grid{grid-template-columns:1fr}.projects-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:12px;text-align:center}.newsletter-card{padding:40px 24px}.newsletter-form{flex-direction:column}.about-stats-row{grid-template-columns:repeat(3,1fr);gap:12px}.hero-stats{gap:24px}.post-modal-body{padding:24px}.post-modal-body h1{font-size:24px}.featured-post-content{padding:28px}.featured-post-title{font-size:22px}}
+@media(max-width:480px){.hero-buttons{flex-direction:column;align-items:center}.hero-stats{flex-wrap:wrap;gap:20px}.about-stats-row{grid-template-columns:1fr}.blog-filters{gap:6px}.filter-btn{padding:6px 14px;font-size:12px}}
+.mobile-nav{position:fixed;top:0;right:-300px;width:300px;height:100%;background:var(--bg-secondary);border-left:1px solid var(--border);z-index:9999;padding:80px 32px 32px;transition:var(--transition)}
+.mobile-nav.open{right:0}
+.mobile-nav a{display:block;padding:14px 0;font-size:16px;font-weight:500;color:var(--text-secondary);border-bottom:1px solid var(--border);transition:var(--transition)}
+.mobile-nav a:hover{color:var(--accent-light);padding-left:10px}
+.mobile-nav-close{position:absolute;top:20px;right:20px;width:36px;height:36px;background:transparent;border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-primary);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+.mobile-nav-close:hover{border-color:var(--accent);color:var(--accent)}
+.mobile-nav-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9998;opacity:0;visibility:hidden;transition:var(--transition)}
+.mobile-nav-overlay.open{opacity:1;visibility:visible}
+  </style>
+</head>
+<body>
+
+  <!-- Loader -->
+  <div class="loader">
+    <div class="loader-inner">
+      <div class="loader-spinner"></div>
+      <span class="loader-text">Yuklanmoqda...</span>
+    </div>
+  </div>
+
+  <!-- Particle Background -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Cursor Glow -->
+  <div class="cursor-glow"></div>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <div class="logo-icon">D</div>
+        <div class="logo-text"><span>doniyorbek</span>-coder</div>
+      </a>
+
+      <div class="nav-links">
+        <a href="#home" class="active">Bosh sahifa</a>
+        <a href="#blog">Blog</a>
+        <a href="#about">Men haqimda</a>
+        <a href="#projects">Loyihalar</a>
+        <a href="#contact">Aloqa</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="nav-search-btn" title="Qidirish (Ctrl+K)">🔍</button>
+        <button class="nav-cta">✉️ Bog'lanish</button>
+      </div>
+
+      <button class="nav-mobile-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav-overlay"></div>
+  <div class="mobile-nav">
+    <button class="mobile-nav-close">✕</button>
+    <a href="#home">🏠 Bosh sahifa</a>
+    <a href="#blog">📝 Blog</a>
+    <a href="#about">👤 Men haqimda</a>
+    <a href="#projects">🚀 Loyihalar</a>
+    <a href="#contact">📧 Aloqa</a>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          Yangi maqolalar har hafta
+        </div>
+
+        <h1 class="hero-title">
+          Salom, men<br>
+          <span class="gradient-text" id="typing-text">Python Backend Developer</span>
+          <span style="color: var(--accent); animation: pulse 1s infinite;">|</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Zamonaviy texnologiyalar, backend development, Telegram botlar va LMS platformalar 
+          haqida foydali maqolalar yozaman. Kod yozish — mening hayotim. 🚀
+        </p>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="stat-number" data-count="50" data-suffix="+">0+</div>
+            <div class="stat-label">Maqolalar</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-number" data-count="25" data-suffix="K+">0K+</div>
+            <div class="stat-label">O'quvchilar</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-number" data-count="30" data-suffix="+">0+</div>
+            <div class="stat-label">Loyihalar</div>
+          </div>
+        </div>
+
+        <div class="hero-buttons">
+          <a href="#blog" class="btn btn-primary">📝 Blogni ko'rish</a>
+          <a href="#about" class="btn btn-outline">👤 Men haqimda</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-code-window">
+          <div class="code-window-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-window-title">doniyorbek.py</span>
+          </div>
+          <div class="code-window-body">
+            <div class="code-line">
+              <span class="line-number">1</span>
+              <span><span class="code-keyword">class</span> <span class="code-function">Doniyorbek</span><span class="code-bracket">:</span></span>
+            </div>
+            <div class="code-line">
+              <span class="line-number">2</span>
+              <span>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__init__</span><span class="code-bracket">(</span><span class="code-variable">self</span><span class="code-bracket">)</span><span class="code-bracket">:</span></span>
+            </div>
+            <div class="code-line">
+              <span class="line-number">3</span>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;self.role <span class="code-operator">=</span> <span class="code-string">"Backend Dev"</span></span>
+            </div>
+            <div class="code-line">
+              <span class="line-number">4</span>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;self.lang <span class="code-operator">=</span> <span class="code-string">"Python"</span></span>
+            </div>
+            <div class="code-line">
+              <span class="line-number">5</span>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;self.passion <span class="code-operator">=</span> <span class="code-string">"∞"</span></span>
+            </div>
+            <div class="code-line">
+              <span class="line-number">6</span>
+              <span></span>
+            </div>
+            <div class="code-line">
+              <span class="line-number">7</span>
+              <span>&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">create</span><span class="code-bracket">(</span><span class="code-variable">self</span>, idea<span class="code-bracket">)</span><span class="code-bracket">:</span></span>
+            </div>
+            <div class="code-line">
+              <span class="line-number">8</span>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-function">Project</span><span class="code-bracket">(</span></span>
+            </div>
+            <div class="code-line">
+              <span class="line-number">9</span>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quality<span class="code-operator">=</span><span class="code-string">"premium"</span>,</span>
+            </div>
+            <div class="code-line">
+              <span class="line-number">10</span>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;speed<span class="code-operator">=</span><span class="code-string">"blazing"</span></span>
+            </div>
+            <div class="code-line">
+              <span class="line-number">11</span>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-bracket">)</span></span>
+            </div>
+            <div class="code-line">
+              <span class="line-number">12</span>
+              <span></span>
+            </div>
+            <div class="code-line">
+              <span class="line-number">13</span>
+              <span><span class="code-comment"># Let's build something amazing! 🚀</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Cards -->
+        <div class="hero-float-card card-1">
+          <div class="float-card-icon">🐍</div>
+          <div class="float-card-title">Python Expert</div>
+          <div class="float-card-value">5+ yil tajriba</div>
+        </div>
+        <div class="hero-float-card card-2">
+          <div class="float-card-icon">⚡</div>
+          <div class="float-card-title">Tez Ishlash</div>
+          <div class="float-card-value">Performance first</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOG SECTION ========== -->
+  <section class="section" id="blog">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-badge">📝 Blog</span>
+        <h2 class="section-title">So'nggi maqolalar</h2>
+        <p class="section-desc">
+          Backend development, DevOps, va zamonaviy texnologiyalar haqida foydali maqolalar
+        </p>
+      </div>
+
+      <!-- Featured Post -->
+      <div class="featured-post-container animate-on-scroll"></div>
+
+      <!-- Blog Filters -->
+      <div class="blog-filters animate-on-scroll">
+        <button class="filter-btn active" data-filter="all">Barchasi</button>
+        <button class="filter-btn" data-filter="Python">🐍 Python</button>
+        <button class="filter-btn" data-filter="Telegram">🤖 Telegram</button>
+        <button class="filter-btn" data-filter="LMS">📚 LMS</button>
+        <button class="filter-btn" data-filter="DevOps">☁️ DevOps</button>
+        <button class="filter-btn" data-filter="Frontend">🎨 Frontend</button>
+        <button class="filter-btn" data-filter="Database">🗄 Database</button>
+        <button class="filter-btn" data-filter="Security">🔒 Security</button>
+      </div>
+
+      <!-- Blog Grid -->
+      <div class="blog-grid"></div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT SECTION ========== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image-wrapper animate-on-scroll">
+          <div class="about-image">
+            <img src="Rasm.png" alt="Doniyorbek" style="width:100%;height:100%;object-fit:cover;border-radius:calc(var(--radius-xl) - 3px);">
+          </div>
+          <div class="about-decoration about-decoration-1"></div>
+          <div class="about-decoration about-decoration-2"></div>
+        </div>
+
+        <div class="about-content animate-on-scroll">
+          <span class="section-badge">👤 Men haqimda</span>
+          <h2 class="about-title">Doniyorbek — Backend Developer</h2>
+          <p class="about-text">
+            Men — zamonaviy va professional loyihalar qiladigan dasturchiman. Asosan Python backend 
+            yo'nalishida ishlayman. Toza, optimallashtirilgan va mukammal strukturalangan kod yozishni 
+            yaxshi ko'raman. Mening maqsadim — oddiy sayt emas, balki premium darajadagi, tez ishlaydigan, 
+            minimalistik dizaynga ega IT loyihalar yaratish.
+          </p>
+
+          <div class="about-skills">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">Telegram Bot</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Bootstrap</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">REST API</span>
+          </div>
+
+          <div class="about-stats-row">
+            <div class="about-stat-card">
+              <div class="stat-icon">🏆</div>
+              <div class="stat-num" data-count="30" data-suffix="+">0</div>
+              <div class="stat-text">Loyihalar</div>
+            </div>
+            <div class="about-stat-card">
+              <div class="stat-icon">👥</div>
+              <div class="stat-num" data-count="100" data-suffix="+">0</div>
+              <div class="stat-text">Mijozlar</div>
+            </div>
+            <div class="about-stat-card">
+              <div class="stat-icon">⭐</div>
+              <div class="stat-num" data-count="5" data-suffix=" yil">0</div>
+              <div class="stat-text">Tajriba</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROJECTS SECTION ========== -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <span class="section-badge">🚀 Loyihalar</span>
+        <h2 class="section-title">Asosiy yo'nalishlarim</h2>
+        <p class="section-desc">
+          Professional darajadagi IT loyihalar yaratish — mening asosiy maqsadim
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card animate-on-scroll">
+          <div class="project-icon">🐍</div>
+          <h3>Python Backend</h3>
+          <p>Django, FastAPI va Flask yordamida kuchli backend tizimlar yaratish. REST API, GraphQL va microservices arxitekturasi.</p>
+          <div class="project-tags">
+            <span>Django</span>
+            <span>FastAPI</span>
+            <span>REST API</span>
+          </div>
+        </div>
+
+        <div class="project-card animate-on-scroll">
+          <div class="project-icon">🤖</div>
+          <h3>Telegram Botlar</h3>
+          <p>Biznes uchun avtomatik Telegram botlar. To'lov integratsiyasi, CRM, va boshqaruv tizimlari bilan integratsiya.</p>
+          <div class="project-tags">
+            <span>aiogram</span>
+            <span>Webhook</span>
+            <span>Payment</span>
+          </div>
+        </div>
+
+        <div class="project-card animate-on-scroll">
+          <div class="project-icon">📚</div>
+          <h3>LMS Platformalar</h3>
+          <p>Zamonaviy ta'lim platformalari. Video darslar, testlar, progress tracking va sertifikatsiya tizimi.</p>
+          <div class="project-tags">
+            <span>LMS</span>
+            <span>Dashboard</span>
+            <span>Analytics</span>
+          </div>
+        </div>
+
+        <div class="project-card animate-on-scroll">
+          <div class="project-icon">🎨</div>
+          <h3>Frontend Development</h3>
+          <p>Bootstrap asosida responsive va zamonaviy UI. Minimalistik dizayn va premium ko'rinish.</p>
+          <div class="project-tags">
+            <span>Bootstrap 5</span>
+            <span>HTML/CSS</span>
+            <span>JavaScript</span>
+          </div>
+        </div>
+
+        <div class="project-card animate-on-scroll">
+          <div class="project-icon">⚙️</div>
+          <h3>Admin Panellar</h3>
+          <p>Kuchli admin panel va dashboard tizimlar. Ma'lumotlarni boshqarish, statistika va hisobotlar.</p>
+          <div class="project-tags">
+            <span>Dashboard</span>
+            <span>CRUD</span>
+            <span>Charts</span>
+          </div>
+        </div>
+
+        <div class="project-card animate-on-scroll">
+          <div class="project-icon">☁️</div>
+          <h3>Server & Deploy</h3>
+          <p>Render, Oracle Cloud va boshqa platformalarga deploy. CI/CD, Docker va monitoring sozlash.</p>
+          <div class="project-tags">
+            <span>Docker</span>
+            <span>Nginx</span>
+            <span>CI/CD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NEWSLETTER ========== -->
+  <section class="newsletter-section" id="contact">
+    <div class="container">
+      <div class="newsletter-card animate-on-scroll">
+        <div class="newsletter-icon">📬</div>
+        <h2>Yangi maqolalardan xabardor bo'ling</h2>
+        <p>Har hafta foydali maqolalar, kod namunalari va texnik maslahatlar to'g'ridan-to'g'ri pochtagizga.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Email manzilingiz..." required>
+          <button type="submit">Obuna bo'lish</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            💻 <span>doniyorbek</span>-coder
+          </div>
+          <p>
+            Zamonaviy texnologiyalar va backend development haqida foydali maqolalar. 
+            Kod yozish — bu san'at. 🎯
+          </p>
+          <div class="footer-social">
+            <a href="#" title="GitHub">🐙</a>
+            <a href="#" title="Telegram">✈️</a>
+            <a href="#" title="LinkedIn">💼</a>
+            <a href="#" title="YouTube">🎬</a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>Sahifalar</h4>
+          <a href="#home">Bosh sahifa</a>
+          <a href="#blog">Blog</a>
+          <a href="#about">Men haqimda</a>
+          <a href="#projects">Loyihalar</a>
+          <a href="#contact">Aloqa</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>Kategoriyalar</h4>
+          <a href="#">Python</a>
+          <a href="#">Telegram Bot</a>
+          <a href="#">LMS Platform</a>
+          <a href="#">DevOps</a>
+          <a href="#">Security</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>Bog'lanish</h4>
+          <a href="#">📧 doniyorbek@dev.uz</a>
+          <a href="#">✈️ @doniyorbek_dev</a>
+          <a href="#">🐙 github.com/doniyorbek</a>
+          <a href="#">📍 O'zbekiston</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 doniyorbek-coder — Barcha huquqlar himoyalangan</span>
+        <span>💜 Python bilan yaratilgan</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SEARCH MODAL ========== -->
+  <div class="search-modal" id="search-modal">
+    <div class="search-modal-content">
+      <div class="search-input-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Maqolalarni qidirish..." autocomplete="off">
+        <span class="search-shortcut">ESC</span>
+      </div>
+      <div class="search-results">
+        <div class="search-empty">Qidiruv uchun kamida 2 ta harf kiriting...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== POST MODAL ========== -->
+  <div class="post-modal" id="post-modal">
+    <div class="post-modal-content"></div>
+  </div>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" title="Yuqoriga">↑</button>
+
+  <script>
+/* ============================================
+   DONIYORBEK BLOG — Premium JavaScript Engine
+   ============================================ */
+const blogPosts=[{id:1,title:"Python Backend: REST API yaratishning eng yaxshi usullari",excerpt:"FastAPI va Django REST Framework yordamida professional darajadagi API yaratish bo'yicha to'liq qo'llanma. Authentication, pagination, va error handling strategiyalari.",category:"Python",image:"https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600&h=400&fit=crop",date:"2026-02-15",readTime:"8 daqiqa",views:2450,featured:true,content:`<p>Python backend development — zamonaviy web ilovalar yaratishning eng kuchli yo'nalishlaridan biri. Bu maqolada men FastAPI va Django REST Framework yordamida professional darajadagi REST API yaratish jarayonini batafsil ko'rib chiqaman.</p><h2>Nima uchun FastAPI?</h2><p>FastAPI — Python'ning eng tez framework'laridan biri bo'lib, u automatic documentation, type checking va async support kabi xususiyatlarga ega. Uning asosiy afzalliklari:</p><p>• <code>Automatic OpenAPI docs</code> — Swagger UI avtomatik generatsiya qilinadi<br>• <code>Type safety</code> — Pydantic models orqali ma'lumot validatsiyasi<br>• <code>Async support</code> — async/await to'liq qo'llab-quvvatlanadi<br>• <code>High performance</code> — Node.js va Go bilan raqobat qila oladi</p><h2>Amaliy misol</h2><pre><code>from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+
+app = FastAPI(title="Doniyorbek API")
+
+class Student(BaseModel):
+    name: str
+    email: str
+    course_id: int
+
+@app.post("/students/")
+async def create_student(student: Student):
+    return {"status": "success", "data": student}</code></pre><p>Bu oddiy misol orqali siz API endpoint yaratishning qanchalik oson ekanini ko'rishingiz mumkin.</p>`},{id:2,title:"Telegram Bot: Avtomatik to'lov tizimini integratsiya qilish",excerpt:"Click, Payme va boshqa to'lov tizimlari bilan Telegram bot integratsiyasi. Webhook, payment API va xavfsizlik masalalari.",category:"Telegram",image:"https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=600&h=400&fit=crop",date:"2026-02-10",readTime:"12 daqiqa",views:3120,content:`<p>Telegram bot orqali to'lov qabul qilish — O'zbekistondagi ko'plab bizneslar uchun muhim funksiya.</p><h2>Asosiy arxitektura</h2><p>1. Telegram Bot API — foydalanuvchi bilan muloqot<br>2. Payment Provider API — to'lovni qayta ishlash<br>3. Webhook Server — callback'larni qabul qilish<br>4. Database — tranzaksiyalarni saqlash</p><h2>Webhook sozlash</h2><pre><code>from aiogram import Bot, Dispatcher
+from aiogram.types import LabeledPrice
+
+bot = Bot(token="YOUR_TOKEN")
+
+@dp.message_handler(commands=['pay'])
+async def process_payment(message):
+    prices = [LabeledPrice(label="Premium kurs", amount=50000)]
+    await bot.send_invoice(
+        chat_id=message.chat.id,
+        title="LMS Premium",
+        description="1 oylik premium obuna",
+        payload="premium_1month",
+        provider_token="PROVIDER_TOKEN",
+        currency="UZS",
+        prices=prices
+    )</code></pre><p>Xavfsizlik masalalariga alohida e'tibor berish kerak.</p>`},{id:3,title:"LMS Platforma: Student Dashboard arxitekturasi",excerpt:"Learning Management System uchun zamonaviy dashboard yaratish. Progress tracking, analytics va real-time updates.",category:"LMS",image:"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",date:"2026-02-05",readTime:"10 daqiqa",views:1890,content:`<p>LMS platforma yaratishda eng muhim qismlardan biri — student dashboard.</p><h2>Dashboard komponentlari</h2><p>• Progress bar — umumiy kurs progressi<br>• Statistika kartalar — tugatilgan darslar, test ballari<br>• Activity timeline — so'nggi faoliyatlar<br>• Calendar — kelgusi darslar jadvali</p><h2>Real-time Progress Tracking</h2><pre><code>class ProgressTracker:
+    def __init__(self, student_id):
+        self.student = Student.objects.get(id=student_id)
+
+    def calculate_progress(self, course_id):
+        total = Lesson.objects.filter(course_id=course_id).count()
+        completed = CompletedLesson.objects.filter(
+            student=self.student,
+            lesson__course_id=course_id
+        ).count()
+        return round((completed / total) * 100, 1)</code></pre>`},{id:4,title:"Server Deploy: Oracle Cloud'da bepul VPS sozlash",excerpt:"Oracle Cloud Free Tier yordamida Python loyihalarni deploy qilish. Nginx, SSL, va CI/CD pipeline sozlash bo'yicha qo'llanma.",category:"DevOps",image:"https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",date:"2026-01-28",readTime:"15 daqiqa",views:4200,content:`<p>Oracle Cloud'ning Free Tier rejasi — dasturchillar uchun ajoyib imkoniyat.</p><h2>VPS ni sozlash</h2><pre><code># Server yangilash
+sudo apt update && sudo apt upgrade -y
+# Python va pip o'rnatish
+sudo apt install python3 python3-pip python3-venv -y
+# Nginx o'rnatish
+sudo apt install nginx -y
+# Certbot (SSL) o'rnatish
+sudo apt install certbot python3-certbot-nginx -y</code></pre><h2>Gunicorn + Nginx konfiguratsiya</h2><p>Production muhitida Gunicorn WSGI server sifatida, Nginx esa reverse proxy sifatida ishlaydi.</p>`},{id:5,title:"Admin Panel: Django bilan kuchli boshqaruv tizimi",excerpt:"Django Admin panelni customization qilish, custom dashboard yaratish va permission tizimini sozlash bo'yicha amaliy qo'llanma.",category:"Python",image:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",date:"2026-01-20",readTime:"11 daqiqa",views:2780,content:`<p>Django'ning built-in admin paneli — kuchli boshqaruv tizimi yaratish uchun ajoyib asos.</p><h2>Custom Admin Dashboard</h2><pre><code># admin.py
+from django.contrib import admin
+from .models import Student, Course, Payment
+
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'course', 'progress', 'status']
+    list_filter = ['course', 'status', 'created_at']
+    search_fields = ['name', 'email']
+    readonly_fields = ['created_at', 'updated_at']</code></pre><h2>Permission tizimi</h2><p>Har xil adminlar uchun turli ruxsatlar berish mumkin.</p>`},{id:6,title:"Bootstrap 5: Zamonaviy responsive dizayn yaratish",excerpt:"Bootstrap 5 bilan premium UI komponentlar yaratish. Dark mode, custom components va performance optimization.",category:"Frontend",image:"https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&h=400&fit=crop",date:"2026-01-15",readTime:"9 daqiqa",views:1950,content:`<p>Bootstrap 5 — frontend development'da eng mashhur CSS framework'laridan biri.</p><h2>Custom Theme yaratish</h2><pre><code>// Custom variables
+$primary: #6c5ce7;
+$dark: #0a0a0f;
+$border-radius: 12px;
+
+// Import Bootstrap
+@import "~bootstrap/scss/bootstrap";</code></pre><h2>Responsive Design</h2><p>Mobile-first yondashuv bilan barcha qurilmalarda mukammal ko'rinishni ta'minlash mumkin.</p>`},{id:7,title:"Database: PostgreSQL optimizatsiya strategiyalari",excerpt:"PostgreSQL'da query optimization, indexing, connection pooling va caching strategiyalari. Real-world misollar bilan.",category:"Database",image:"https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=400&fit=crop",date:"2026-01-10",readTime:"14 daqiqa",views:3560,content:`<p>Database optimizatsiyasi — har qanday backend loyihaning muhim qismi.</p><h2>Indexing strategiyasi</h2><pre><code>-- Composite index
+CREATE INDEX idx_student_course_status
+ON students(course_id, status)
+WHERE status = 'active';
+
+-- Partial index
+CREATE INDEX idx_recent_payments
+ON payments(created_at)
+WHERE created_at > NOW() - INTERVAL '30 days';</code></pre><h2>Connection Pooling</h2><p>PgBouncer yoki SQLAlchemy'ning built-in connection pool'idan foydalanish muhim.</p>`},{id:8,title:"API Security: JWT va OAuth2 implementatsiyasi",excerpt:"Xavfsiz API yaratish uchun JWT token'lar, OAuth2 flow va rate limiting implementatsiyasi. OWASP standartlari asosida.",category:"Security",image:"https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=400&fit=crop",date:"2026-01-05",readTime:"13 daqiqa",views:4100,content:`<p>API xavfsizligi — har qanday web ilovaning eng muhim aspekti.</p><h2>JWT Implementation</h2><pre><code>import jwt
+from datetime import datetime, timedelta
+
+def create_access_token(user_id: int) -> str:
+    payload = {
+        "sub": user_id,
+        "exp": datetime.utcnow() + timedelta(hours=1),
+        "iat": datetime.utcnow(),
+        "type": "access"
+    }
+    return jwt.encode(payload, SECRET_KEY, algorithm="HS256")</code></pre><h2>Rate Limiting</h2><p>DDoS hujumlardan himoyalanish uchun rate limiting muhim ahamiyatga ega.</p>`},{id:9,title:"CI/CD: GitHub Actions bilan avtomatik deploy",excerpt:"GitHub Actions yordamida avtomatik test, build va deploy pipeline yaratish. Docker containerization va monitoring.",category:"DevOps",image:"https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=600&h=400&fit=crop",date:"2025-12-28",readTime:"10 daqiqa",views:2340,content:`<p>CI/CD pipeline — zamonaviy dasturiy ta'minot yaratish jarayonining ajralmas qismi.</p><h2>GitHub Actions Workflow</h2><pre><code>name: Deploy to Production
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Tests
+        run: |
+          pip install -r requirements.txt
+          pytest tests/
+      - name: Deploy
+        run: |
+          ssh user@server 'cd /app && git pull && systemctl restart app'</code></pre><p>Bu oddiy workflow har bir push'da testlarni ishga tushiradi va deploy qiladi.</p>`}];
+
+document.addEventListener('DOMContentLoaded',()=>{initLoader();initParticles();initCursorGlow();initNavbar();initMobileNav();initTypingEffect();initScrollAnimations();initBlogCards();initBlogFilters();initSearchModal();initBackToTop();initCounterAnimation();initNewsletterForm()});
+function initLoader(){const loader=document.querySelector('.loader');window.addEventListener('load',()=>{setTimeout(()=>{loader.classList.add('hidden')},800)})}
+function initParticles(){const canvas=document.getElementById('particles-canvas');if(!canvas)return;const ctx=canvas.getContext('2d');let particles=[];let animationId;function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}class Particle{constructor(){this.reset()}reset(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.size=Math.random()*2+0.5;this.speedX=(Math.random()-0.5)*0.4;this.speedY=(Math.random()-0.5)*0.4;this.opacity=Math.random()*0.4+0.1}update(){this.x+=this.speedX;this.y+=this.speedY;if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height){this.reset()}}draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=`rgba(108,92,231,${this.opacity})`;ctx.fill()}}function init(){resize();particles=[];const count=Math.min(80,Math.floor((canvas.width*canvas.height)/15000));for(let i=0;i<count;i++){particles.push(new Particle())}}function connectParticles(){for(let i=0;i<particles.length;i++){for(let j=i+1;j<particles.length;j++){const dx=particles[i].x-particles[j].x;const dy=particles[i].y-particles[j].y;const dist=Math.sqrt(dx*dx+dy*dy);if(dist<150){ctx.beginPath();ctx.strokeStyle=`rgba(108,92,231,${0.06*(1-dist/150)})`;ctx.lineWidth=0.5;ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke()}}}}function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{p.update();p.draw()});connectParticles();animationId=requestAnimationFrame(animate)}init();animate();window.addEventListener('resize',()=>{cancelAnimationFrame(animationId);init();animate()})}
+function initCursorGlow(){const glow=document.querySelector('.cursor-glow');if(!glow||window.innerWidth<768)return;document.addEventListener('mousemove',(e)=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'})}
+function initNavbar(){const navbar=document.querySelector('.navbar');const links=document.querySelectorAll('.nav-links a');window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>50)});links.forEach(link=>{link.addEventListener('click',(e)=>{e.preventDefault();const target=document.querySelector(link.getAttribute('href'));if(target){target.scrollIntoView({behavior:'smooth',block:'start'})}links.forEach(l=>l.classList.remove('active'));link.classList.add('active')})});const sections=document.querySelectorAll('.section[id]');window.addEventListener('scroll',()=>{let current='';sections.forEach(section=>{const top=section.offsetTop-100;if(window.scrollY>=top){current=section.getAttribute('id')}});links.forEach(link=>{link.classList.remove('active');if(link.getAttribute('href')==='#'+current){link.classList.add('active')}})})}
+function initMobileNav(){const toggle=document.querySelector('.nav-mobile-toggle');const mobileNav=document.querySelector('.mobile-nav');const overlay=document.querySelector('.mobile-nav-overlay');const closeBtn=document.querySelector('.mobile-nav-close');const links=document.querySelectorAll('.mobile-nav a');function openNav(){mobileNav.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden'}function closeNav(){mobileNav.classList.remove('open');overlay.classList.remove('open');document.body.style.overflow=''}if(toggle)toggle.addEventListener('click',openNav);if(closeBtn)closeBtn.addEventListener('click',closeNav);if(overlay)overlay.addEventListener('click',closeNav);links.forEach(link=>{link.addEventListener('click',(e)=>{e.preventDefault();closeNav();const target=document.querySelector(link.getAttribute('href'));if(target){setTimeout(()=>{target.scrollIntoView({behavior:'smooth',block:'start'})},300)}})})}
+function initTypingEffect(){const element=document.getElementById('typing-text');if(!element)return;const texts=['Python Backend Developer','Telegram Bot Creator','LMS Platform Builder','Full-Stack Enthusiast'];let textIndex=0;let charIndex=0;let isDeleting=false;function type(){const current=texts[textIndex];if(isDeleting){element.textContent=current.substring(0,charIndex-1);charIndex--}else{element.textContent=current.substring(0,charIndex+1);charIndex++}let speed=isDeleting?40:80;if(!isDeleting&&charIndex===current.length){speed=2000;isDeleting=true}else if(isDeleting&&charIndex===0){isDeleting=false;textIndex=(textIndex+1)%texts.length;speed=500}setTimeout(type,speed)}type()}
+function initScrollAnimations(){const elements=document.querySelectorAll('.animate-on-scroll');const observer=new IntersectionObserver((entries)=>{entries.forEach((entry,index)=>{if(entry.isIntersecting){setTimeout(()=>{entry.target.classList.add('animated')},index*100);observer.unobserve(entry.target)}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});elements.forEach(el=>observer.observe(el))}
+function initBlogCards(){const grid=document.querySelector('.blog-grid');const featuredContainer=document.querySelector('.featured-post-container');if(!grid)return;const featured=blogPosts.find(p=>p.featured);if(featured&&featuredContainer){featuredContainer.innerHTML=`<div class="featured-post" onclick="openPost(${featured.id})"><div class="featured-post-image"><img src="${featured.image}" alt="${featured.title}" loading="lazy"><span class="featured-label">⭐ Tavsiya etilgan</span></div><div class="featured-post-content"><span class="featured-post-category">${featured.category}</span><h2 class="featured-post-title">${featured.title}</h2><p class="featured-post-excerpt">${featured.excerpt}</p><div class="featured-post-meta"><span>📅 ${formatDate(featured.date)}</span><span>⏱ ${featured.readTime}</span><span>👁 ${featured.views.toLocaleString()}</span></div></div></div>`}renderBlogCards(blogPosts)}
+function renderBlogCards(posts){const grid=document.querySelector('.blog-grid');if(!grid)return;grid.innerHTML=posts.map((post,i)=>`<div class="blog-card" data-category="${post.category}" style="transition-delay:${i*0.1}s" onclick="openPost(${post.id})"><div class="blog-card-image"><img src="${post.image}" alt="${post.title}" loading="lazy"><span class="blog-card-category">${post.category}</span></div><div class="blog-card-body"><div class="blog-card-meta"><span>📅 ${formatDate(post.date)}</span><span>⏱ ${post.readTime}</span></div><h3 class="blog-card-title">${post.title}</h3><p class="blog-card-excerpt">${post.excerpt}</p><div class="blog-card-footer"><div class="blog-card-author"><div style="width:32px;height:32px;background:var(--gradient-1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;">D</div><span class="blog-card-author-name">Doniyorbek</span></div><span class="blog-card-read-more">O'qish →</span></div></div></div>`).join('');setTimeout(()=>{document.querySelectorAll('.blog-card').forEach((card,i)=>{setTimeout(()=>card.classList.add('visible'),i*100)})},200)}
+function initBlogFilters(){const buttons=document.querySelectorAll('.filter-btn');buttons.forEach(btn=>{btn.addEventListener('click',()=>{buttons.forEach(b=>b.classList.remove('active'));btn.classList.add('active');const filter=btn.dataset.filter;const filtered=filter==='all'?blogPosts:blogPosts.filter(p=>p.category===filter);renderBlogCards(filtered)})})}
+function openPost(id){const post=blogPosts.find(p=>p.id===id);if(!post)return;const modal=document.getElementById('post-modal');const content=modal.querySelector('.post-modal-content');content.innerHTML=`<div class="post-modal-header"><img src="${post.image}" alt="${post.title}"><button class="post-modal-close" onclick="closePost()">✕</button></div><div class="post-modal-body"><span class="post-category">${post.category}</span><h1>${post.title}</h1><div class="post-modal-meta"><span>📅 ${formatDate(post.date)}</span><span>⏱ ${post.readTime}</span><span>👁 ${post.views.toLocaleString()} ko'rilgan</span></div><div class="post-modal-text">${post.content}</div></div>`;modal.classList.add('active');document.body.style.overflow='hidden'}
+function closePost(){const modal=document.getElementById('post-modal');modal.classList.remove('active');document.body.style.overflow=''}
+function initSearchModal(){const searchBtn=document.querySelector('.nav-search-btn');const modal=document.getElementById('search-modal');const input=modal?.querySelector('input');if(searchBtn&&modal){searchBtn.addEventListener('click',()=>{modal.classList.add('active');setTimeout(()=>input?.focus(),300)});modal.addEventListener('click',(e)=>{if(e.target===modal){modal.classList.remove('active')}});document.addEventListener('keydown',(e)=>{if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();modal.classList.toggle('active');if(modal.classList.contains('active')){setTimeout(()=>input?.focus(),300)}}if(e.key==='Escape'){modal.classList.remove('active');closePost()}})}if(input){input.addEventListener('input',(e)=>{const query=e.target.value.toLowerCase();const resultsContainer=modal.querySelector('.search-results');if(query.length<2){resultsContainer.innerHTML='<div class="search-empty">Qidiruv uchun kamida 2 ta harf kiriting...</div>';return}const results=blogPosts.filter(post=>post.title.toLowerCase().includes(query)||post.excerpt.toLowerCase().includes(query)||post.category.toLowerCase().includes(query));if(results.length===0){resultsContainer.innerHTML='<div class="search-empty">Hech narsa topilmadi 😔</div>';return}resultsContainer.innerHTML=results.map(post=>`<div class="search-result-item" onclick="openPost(${post.id});document.getElementById('search-modal').classList.remove('active');"><span class="search-result-icon">📝</span><div class="search-result-info"><h4>${post.title}</h4><p>${post.category} · ${post.readTime}</p></div></div>`).join('')})}}
+function initBackToTop(){const btn=document.querySelector('.back-to-top');if(!btn)return;window.addEventListener('scroll',()=>{btn.classList.toggle('visible',window.scrollY>500)});btn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})})}
+function initCounterAnimation(){const counters=document.querySelectorAll('[data-count]');const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){const target=parseInt(entry.target.dataset.count);animateCounter(entry.target,target);observer.unobserve(entry.target)}})},{threshold:0.5});counters.forEach(counter=>observer.observe(counter))}
+function animateCounter(element,target){let current=0;const increment=target/60;const suffix=element.dataset.suffix||'';function update(){current+=increment;if(current>=target){element.textContent=target+suffix;return}element.textContent=Math.floor(current)+suffix;requestAnimationFrame(update)}update()}
+function initNewsletterForm(){const form=document.querySelector('.newsletter-form');if(!form)return;form.addEventListener('submit',(e)=>{e.preventDefault();const input=form.querySelector('input');const btn=form.querySelector('button');if(!input.value.includes('@')){input.style.borderColor='var(--danger)';setTimeout(()=>input.style.borderColor='',2000);return}btn.textContent='✓ Yuborildi!';btn.style.background='var(--success)';input.value='';setTimeout(()=>{btn.textContent="Obuna bo'lish";btn.style.background=''},3000)})}
+function formatDate(dateStr){const months=['Yanvar','Fevral','Mart','Aprel','May','Iyun','Iyul','Avgust','Sentabr','Oktabr','Noyabr','Dekabr'];const date=new Date(dateStr);return `${date.getDate()} ${months[date.getMonth()]}, ${date.getFullYear()}`}
+  </script>
+</body>
+</html>
